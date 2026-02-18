@@ -12,5 +12,23 @@
 
  setTimeoutPromisified(3000).then(callback)
 
+//Tasks
+
+ //Promisified fsreadfile
+
+
+
+ function fsReadFiledPromsified(filePath,encoding){
+    return new Promise((resolve,reject)=>{
+        fs.readFile(filePath,encoding,(err,data)=>{
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(data);
+            }
+        })
+    })
+ }
 
 
