@@ -1,0 +1,44 @@
+class Rectangle{
+    constructor(widht,height,color){
+        this.width=widht;
+        this.height=height;
+        this.color=color;
+    }
+    area() {
+        const area =this.width*this.height;
+        return area
+    }
+
+
+    paint(){
+        console.log(`Painting with color ${this.color}`)
+    }
+}
+
+
+class Cirlce{
+    constructor(radius,color){
+        this.radius=radius
+        this.color=color
+    }
+
+    area(){
+        const area= 2*3.14*this.radius*this.radius;
+        return area
+    }
+
+    paint(){
+        console.log(`Painting this circle in ${this.color}`)
+    }
+}
+
+
+const rect = new Rectangle(2,4,"blue")
+
+const area = rect.area()
+console.log(area)
+
+
+const cir= new Cirlce(7)
+const cir_area=cir.area()
+console.log(cir_area)
