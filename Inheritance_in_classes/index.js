@@ -20,7 +20,7 @@ class Rectangle extends Shape{
     constructor(widht,height,color){
         this.width=widht;
         this.height=height;
-        this.color=color;
+        super(color)
     }
     area() {
         const area =this.width*this.height;
@@ -28,16 +28,14 @@ class Rectangle extends Shape{
     }
 
 
-    paint(){
-        console.log(`Painting with color ${this.color}`)
-    }
+    
 }
 
 
 class Cirlce extends Shape{
     constructor(radius,color){
         this.radius=radius
-        this.color=color
+        super(color)
     }
 
     area(){
@@ -45,9 +43,7 @@ class Cirlce extends Shape{
         return area
     }
 
-    paint(){
-        console.log(`Painting this circle in ${this.color}`)
-    }
+    
 }
 
 
