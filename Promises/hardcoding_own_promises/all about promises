@@ -1,0 +1,123 @@
+==============================
+WHAT IS A PROMISE (JavaScript)
+==============================
+
+A Promise in JavaScript is an object that represents the eventual result of an asynchronous operation — either:
+
+• success (resolved)
+• failure (rejected)
+
+It is used to handle operations that take time to complete.
+
+Common real-world uses:
+• Fetching data from an API
+• Reading files (Node.js fs module)
+• Timers (setTimeout)
+• Database queries
+• Authentication calls
+
+
+--------------------------------
+PROMISE STATES
+--------------------------------
+
+A Promise has 3 states:
+
+1) Pending
+   - Operation is still running
+   - Initial state
+
+2) Fulfilled (Resolved)
+   - Operation completed successfully
+   - resolve(value) is called
+
+3) Rejected
+   - Operation failed
+   - reject(error) is called
+
+
+--------------------------------
+IMPORTANT RULE
+--------------------------------
+
+Once a promise is fulfilled or rejected,
+it becomes "settled".
+
+After that:
+• state cannot change
+• resolve/reject cannot run again
+
+
+--------------------------------
+MENTAL MODEL
+--------------------------------
+
+Promise = Future value container
+
+Example thought process:
+
+"I promise to give you money tomorrow"
+
+Today → pending  
+Tomorrow success → fulfilled  
+Tomorrow failure → rejected  
+
+
+--------------------------------
+BASIC SYNTAX
+--------------------------------
+
+Creating a promise:
+
+new Promise((resolve, reject) => {
+    // async work here
+
+    if(success) {
+        resolve(value)
+    } else {
+        reject(error)
+    }
+})
+
+
+Using a promise:
+
+promise
+  .then(result => {
+      // runs on success
+  })
+  .catch(error => {
+      // runs on failure
+  })
+
+
+--------------------------------
+WHY PROMISES EXIST
+--------------------------------
+
+Before promises → callbacks:
+
+login(() => {
+   getUser(() => {
+      getPosts(() => {
+         getComments(() => {})
+      })
+   })
+})
+
+Problem:
+• unreadable
+• nested
+• hard error handling
+
+After promises:
+
+login()
+  .then(getUser)
+  .then(getPosts)
+  .then(getComments)
+  .catch(handleError)
+
+Cleaner.
+Maintainable.
+Scalable.
