@@ -112,3 +112,34 @@ setTimeoutPromisified(1000)
 
     //callback is never passed in promisfied
     
+
+
+
+
+//promsified version of fswritefile
+
+
+function fsWriteFilePromisifed(filename,content,encoding){
+
+    return new Promise(function(resolve,reject){
+        fs.writeFile(filename,content,encoding,function(err){
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve("File written")
+            }
+        })
+    })
+
+}
+
+
+fsWriteFilePromisifed("a.txt","Sohom this side","utf-8")
+    .then(function(content){
+        console.log(content)
+
+    })
+    .catch(function(e){
+        console.log("error ",e)
+    })
