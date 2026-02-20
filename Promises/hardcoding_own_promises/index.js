@@ -4,7 +4,7 @@ const myPromise=new Promise((resolve,reject)=>{
     let success= true
 
     if(success){
-        resolve("Operation succesfull");
+        resolve("Operation successful");
     }
     else{
         reject("Operation failed");
@@ -24,4 +24,91 @@ myPromise
     })
 
 
-//
+//default state of a promise is pending.
+
+
+
+// create a promisified version of fs.readFile
+// create a promisified version of setTimeout
+//create a promisified version of fs.writeFile
+
+const fs = require("fs")
+
+function fsReadFilePromise(fileName,encoding){
+
+    return new Promise(function(resolve,reject){
+
+        // suppose to do waht needs to be done 
+        //promsie class responsiblity to is to run this function
+
+        fs.readFile(fileName,encoding,function(err,data){
+            if(err){
+
+                //if there is a error catch function needs to do its work
+
+                reject(err) // thereforen call reject
+
+            }
+            else{
+
+
+                //otherwise .then function should do the taskresolve(
+
+                resolve(data)
+
+
+
+
+            }
+        })
+
+    }); // for promsified we need to return a promise
+
+}
+
+
+//supposed to look like this
+
+fsReadFilePromise("a.txt","utf-8")
+    .then(function (data){
+        console.log(data)
+    })
+    .catch(function(e){
+        console.log("Error occured")
+    })
+
+
+
+
+
+
+
+// now promisfied version of setTimeout
+
+function setTimeoutPromisified(delay){
+    return new Promise(function(resolve,reject){
+
+        //promise to be resolved after delay
+
+        setTimeout(function(){
+            resolve()
+        },delay)
+
+
+    })
+}
+
+
+
+setTimeout(function(){
+    console.log("hi")
+})
+
+
+setTimeoutPromisified(1000)
+    .then(function(){
+        console.log("resolved after 1 second")
+    })
+
+    //callback is never passed in promisfied
+    
