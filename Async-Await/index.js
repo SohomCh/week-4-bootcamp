@@ -36,3 +36,5 @@ async function main() {
 
 main();
 // async await is just a syntactical sugar inside its the same.then and .catch
+
+
