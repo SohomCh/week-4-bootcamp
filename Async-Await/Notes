@@ -1,0 +1,160 @@
+
+
+     ==============================
+ASYNC / AWAIT SYNTAX (JS NOTES)
+==============================
+
+Async/await is a modern way to write asynchronous code in JavaScript
+that looks and behaves like synchronous code.
+
+It improves readability and makes async flows easier to understand
+compared to chaining .then() and .catch().
+
+
+--------------------------------
+CORE IDEA
+--------------------------------
+
+Async/await is built on top of Promises.
+
+It does NOT replace Promises.
+It is syntactic sugar over Promises.
+
+Under the hood:
+async function → returns a Promise
+await → pauses execution until the Promise resolves/rejects
+
+
+--------------------------------
+ASYNC KEYWORD
+--------------------------------
+
+The async keyword is used before a function.
+
+Example:
+
+async function run() {
+    return "hello"
+}
+
+This automatically returns a Promise.
+
+Equivalent to:
+
+function run() {
+    return Promise.resolve("hello")
+}
+
+
+--------------------------------
+AWAIT KEYWORD
+--------------------------------
+
+await can only be used inside async functions.
+
+It pauses execution of the function until the Promise settles.
+
+Example:
+
+const data = await fetchData()
+
+Meaning:
+• wait until promise resolves
+• then store result in data
+
+
+--------------------------------
+BASIC EXAMPLE
+--------------------------------
+
+Using Promises:
+
+fetchData()
+   .then(data => console.log(data))
+   .catch(err => console.log(err))
+
+
+Using async/await:
+
+async function run() {
+    try {
+        const data = await fetchData()
+        console.log(data)
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+--------------------------------
+ERROR HANDLING
+--------------------------------
+
+With async/await, errors are handled using try/catch.
+
+Example:
+
+async function readFile() {
+    try {
+        const data = await fsReadFilePromise("a.txt","utf-8")
+        console.log(data)
+    } catch (err) {
+        console.error("Error:", err)
+    }
+}
+
+
+--------------------------------
+IMPORTANT BEHAVIOR
+--------------------------------
+
+1) async functions always return a Promise
+
+2) await only works with Promises
+
+3) await pauses ONLY the async function
+   (not the entire program)
+
+4) if Promise rejects → control goes to catch block
+
+
+--------------------------------
+MENTAL MODEL
+--------------------------------
+
+Promise style:
+
+step1()
+   .then(step2)
+   .then(step3)
+
+Async/await style:
+
+await step1()
+await step2()
+await step3()
+
+Looks synchronous, but runs asynchronously.
+
+
+--------------------------------
+WHY USE ASYNC/AWAIT
+--------------------------------
+
+• cleaner syntax
+• better readability
+• easier debugging
+• structured error handling
+• avoids promise chaining
+
+
+--------------------------------
+REAL WORLD USAGE
+--------------------------------
+
+• API calls
+• Database queries
+• File operations
+• Authentication flows
+• Backend services
+    
